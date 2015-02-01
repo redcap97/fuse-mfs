@@ -1,0 +1,5 @@
+*.o
+*.d
+fuse-mfs
+mkfs.mfs
+fsck.mfs
