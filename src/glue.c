@@ -58,8 +58,12 @@ void util_stacktrace(void) {
 }
 
 time_t clock_time(struct timespec *tv) {
-  assert(tv == NULL);
-  return time(NULL);
+  time_t t = time(NULL);
+  if (tv) {
+    tv->tv_sec  = t;
+    tv->tv_nsec = 0;
+  }
+  return t;
 }
 
 void glue_setup(const char *path) {
