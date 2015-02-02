@@ -29,16 +29,16 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
   mode_t mode_word;
   int completed;
   struct inode *rip;
-  
+
   r = OK;
-  
+
   /* Find the inode referred */
   if ((rip = find_inode(fs_dev, ino_nr)) == NULL)
 	return(-EINVAL);
 
   mode_word = rip->i_mode & I_TYPE;
   regular = (mode_word == I_REGULAR);
-  
+
   /* Determine blocksize */
   block_size = rip->i_sp->s_block_size;
   f_size = rip->i_size;
@@ -47,7 +47,7 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
 
   /* If this is file i/o, check we can write */
   if (call == FSC_WRITE) {
-  	  if(rip->i_sp->s_rd_only) 
+  	  if(rip->i_sp->s_rd_only)
 		  return -EROFS;
 
 	  /* Check in advance to see if file will grow too big. */
@@ -74,7 +74,7 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
 		  if (position >= f_size) break;	/* we are beyond EOF */
 		  if (chunk > (unsigned int) bytes_left) chunk = bytes_left;
 	  }
-	  
+
 	  /* Read or write 'chunk' bytes. */
 	  r = rw_chunk(rip, ((u64_t)((unsigned long)position)), off, chunk,
 		nrbytes, call, data, cum_io, block_size, &completed);
@@ -93,7 +93,7 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
 	  if (regular || mode_word == I_DIRECTORY) {
 		  if (position > f_size) rip->i_size = position;
 	  }
-  } 
+  }
 
   rip->i_seek = NO_SEEK;
 
@@ -103,7 +103,7 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
   if (r != OK)
 	return r;
 
-  /* even on a ROFS, writing to a device node on it is fine, 
+  /* even on a ROFS, writing to a device node on it is fine,
    * just don't update the inode stats for it. And dito for reading.
    */
   if (!rip->i_sp->s_rd_only) {
@@ -111,7 +111,7 @@ ssize_t fs_readwrite(ino_t ino_nr, struct fsdriver_data *data, size_t nrbytes,
 	  if (call == FSC_WRITE) rip->i_update |= CTIME | MTIME;
 	  IN_MARKDIRTY(rip);		/* inode is thus now dirty */
   }
-  
+
   return cum_io;
 }
 
@@ -167,8 +167,7 @@ int *completed;			/* number of bytes copied */
 			return(err_code);
 	}
   } else if (call != FSC_WRITE) {
-	/* Read and read ahead if convenient. */
-	bp = rahead(rip, b, position, left);
+	bp = lmfs_get_block_ino(dev, b, NORMAL, ino, ino_off);
   } else {
 	/* Normally an existing block to be partially overwritten is first read
 	 * in.  However, a full block need not be read in.  If it is already in
@@ -184,7 +183,7 @@ int *completed;			/* number of bytes copied */
 
   /* In all cases, bp now points to a valid buffer. */
   assert(bp != NULL);
-  
+
   if (call == FSC_WRITE && chunk != block_size &&
       (off_t) ex64lo(position) >= rip->i_size && off == 0) {
 	zero_block(bp);
@@ -198,7 +197,7 @@ int *completed;			/* number of bytes copied */
 	r = fsdriver_copyin(data, buf_off, b_data(bp)+off, chunk);
 	MARKDIRTY(bp);
   }
-  
+
   n = (off + chunk == block_size ? FULL_DATA_BLOCK : PARTIAL_DATA_BLOCK);
   put_block(bp, n);
 
@@ -322,10 +321,11 @@ int index;			/* index into *bp */
 	       (long) zone, index);
 	panic("check file system");
   }
-  
+
   return(zone);
 }
 
+#if 0
 /*===========================================================================*
  *				rahead					     *
  *===========================================================================*/
@@ -368,7 +368,7 @@ unsigned bytes_ahead;		/* bytes beyond position for immediate use */
 
   dev = rip->i_dev;
   assert(dev != NO_DEV);
-  
+
   block_size = get_block_size(dev);
 
   block = baseblock;
@@ -462,7 +462,7 @@ unsigned bytes_ahead;		/* bytes beyond position for immediate use */
 
   return(lmfs_get_block_ino(dev, baseblock, NORMAL, rip->i_num, position));
 }
-
+#endif
 
 /*===========================================================================*
  *				fs_getdents				     *
@@ -486,7 +486,7 @@ ssize_t fs_getdents(ino_t ino_nr, struct fsdriver_data *data, size_t bytes,
   pos = *posp;
   if( (unsigned int) pos % DIR_ENTRY_SIZE)
 	  return(-ENOENT);
-  
+
   if( (rip = get_inode(fs_dev, ino_nr)) == NULL)
 	  return(-EINVAL);
 

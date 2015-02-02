@@ -222,7 +222,6 @@ int lmfs_rdwt_err(void);
 int lmfs_bufs_in_use(void);
 int lmfs_nr_bufs(void);
 void lmfs_set_blocksize(int blocksize, int major);
-void lmfs_rw_scattered(dev_t dev, struct buf **bufq, int bufqsize, int rw_flag);
 void lmfs_reset_rdwt_err(void);
 void lmfs_invalidate(dev_t device);
 

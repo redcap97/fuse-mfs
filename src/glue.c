@@ -223,10 +223,6 @@ void lmfs_set_blocksize(int blocksize, int major) {
   ctx->block_size = blocksize;
 }
 
-void lmfs_rw_scattered(dev_t dev, struct buf **bufq, int bufqsize, int rw_flag) {
-  panic("%s: couldn't execute\n", __func__);
-}
-
 void lmfs_reset_rdwt_err(void) {
   ctx->rdwt_err = OK;
 }
