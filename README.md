@@ -22,10 +22,16 @@ fusermount -u /path/to/mountpoint/
 mkfs.mfs /path/to/image_file
 ```
 
-### fsck
+### fsck (check)
 
 ```
 fsck.mfs /path/to/image_file
+```
+
+### fsck (repair)
+
+```
+fsck.mfs -r /path/to/image_file
 ```
 
 ## Build Prerequisites
