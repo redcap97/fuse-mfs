@@ -104,8 +104,7 @@ void lmfs_put_block(struct buf *bp, int block_type) {
 
   if (!lmfs_isclean(bp)) {
     offset = blocksize * bp->lmfs_blocknr;
-    assert(lseek(ctx->fd, offset, SEEK_SET) == offset);
-    assert(write(ctx->fd, bp->data, blocksize) == blocksize);
+    assert(pwrite(ctx->fd, bp->data, blocksize, offset) == blocksize);
   }
 
   buf_list_remove(bp);
@@ -139,8 +138,7 @@ struct buf *lmfs_get_block_ino(dev_t dev, block_t block, int only_search,
   memset(bp, 0, sizeof(struct buf));
 
   offset = blocksize * block;
-  assert(lseek(ctx->fd, offset, SEEK_SET) == offset);
-  assert(read(ctx->fd, data, blocksize) == blocksize);
+  assert(pread(ctx->fd, data, blocksize, offset) == blocksize);
 
   bp->data = data;
   bp->lmfs_blocknr = block;
@@ -184,8 +182,7 @@ void lmfs_flushall(void) {
 
     if (!lmfs_isclean(bp)) {
       offset = blocksize * bp->lmfs_blocknr;
-      assert(lseek(ctx->fd, offset, SEEK_SET) == offset);
-      assert(write(ctx->fd, bp->data, blocksize) == blocksize);
+      assert(pwrite(ctx->fd, bp->data, blocksize, offset) == blocksize);
 
       lmfs_markclean(bp);
     }
