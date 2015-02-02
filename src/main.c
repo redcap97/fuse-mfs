@@ -8,6 +8,9 @@
 #define FUSE_USE_VERSION 29
 #include <fuse.h>
 
+#define PACKAGE_NAME    "fuse-mfs"
+#define PACKAGE_VERSION "0.1"
+
 enum {
   KEY_VERSION,
   KEY_HELP,
@@ -533,7 +536,7 @@ static int minix_opt_proc(void *data, const char *arg, int key,
       return 1;
 
     case KEY_VERSION:
-      printf("fuse-minix version 0.1\n");
+      printf("%s version %s\n", PACKAGE_NAME, PACKAGE_VERSION);
       fuse_opt_add_arg(outargs, "--version");
       fuse_main(outargs->argc, outargs->argv, NULL, NULL);
       exit(0);
