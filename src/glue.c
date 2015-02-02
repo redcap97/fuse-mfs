@@ -131,6 +131,8 @@ struct buf *lmfs_get_block_ino(dev_t dev, block_t block, int only_search,
     }
   }
 
+  assert(lmfs_nr_bufs() > 0);
+
   bp = (struct buf*)malloc(sizeof(struct buf));
   data = (char*)malloc(blocksize);
 
@@ -212,7 +214,7 @@ int lmfs_bufs_in_use(void) {
 }
 
 int lmfs_nr_bufs(void) {
-  return DEFAULT_NR_BUFS;
+  return DEFAULT_NR_BUFS - lmfs_bufs_in_use();
 }
 
 void lmfs_set_blocksize(int blocksize, int major) {
