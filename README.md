@@ -59,8 +59,8 @@ make install # or make install PREFIX=/usr
 
 fuse-mfs uses code from the following open-source projects:
 
-* [MINIX3](http://www.minix3.org/) : [LICENSE](http://git.minix3.org/index.cgi?p=minix.git;a=blob_plain;f=LICENSE;hb=HEAD)
-* [pjd-fstest](http://www.tuxera.com/community/posix-test-suite/) : [LICENSE](test/pjd-fstest/LICENSE)
+* [MINIX3](http://www.minix3.org/): [LICENSE](http://git.minix3.org/index.cgi?p=minix.git;a=blob_plain;f=LICENSE;hb=HEAD)
+* [pjd-fstest](http://www.tuxera.com/community/posix-test-suite/): [LICENSE](test/pjd-fstest/LICENSE)
 
 ## License
 
