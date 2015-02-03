@@ -325,8 +325,9 @@ static int minix_readlink(const char *path, char *buf, size_t size) {
 
 static int minix_rename(const char *from, const char *to) {
   int r;
-  struct fsdriver_node from_node, to_node;
+  struct fsdriver_node node, from_node, to_node;
   char *from_cp, *to_cp;
+  struct inode *rip;
 
   from_cp = strdup(from);
   r = lookup(root_node.fn_ino_nr, dirname(from_cp), &from_node);
@@ -345,12 +346,26 @@ static int minix_rename(const char *from, const char *to) {
 
   from_cp = strdup(from);
   to_cp = strdup(to);
+
   r = fs_rename(from_node.fn_ino_nr, basename(from_cp),
                 to_node.fn_ino_nr, basename(to_cp));
+
   fs_putnode(from_node.fn_ino_nr, 1);
   fs_putnode(to_node.fn_ino_nr, 1);
   free(from_cp);
   free(to_cp);
+
+  if (r == OK && lookup(root_node.fn_ino_nr, to, &node) == OK) {
+    rip = get_inode(fs_dev, node.fn_ino_nr);
+
+    if (rip) {
+      rip->i_update |= CTIME;
+      IN_MARKDIRTY(rip);
+      put_inode(rip);
+    }
+
+    fs_putnode(node.fn_ino_nr, 1);
+  }
 
   return r;
 }
