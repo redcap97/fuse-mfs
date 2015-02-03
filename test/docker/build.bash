@@ -7,7 +7,7 @@ apt-get update
 apt-get upgrade
 apt-get install -y git build-essential pkg-config fuse libfuse-dev
 
-git clone -b ${BRANCH:-master} https://github.com/redcap97/fuse-mfs.git
+git clone -b ${branch:-master} https://github.com/redcap97/fuse-mfs.git
 pushd fuse-mfs/
 make
 make install PREFIX=/usr
