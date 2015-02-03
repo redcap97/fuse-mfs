@@ -3,3 +3,4 @@
 fuse-mfs
 mkfs.mfs
 fsck.mfs
+fstest
