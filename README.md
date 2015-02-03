@@ -55,12 +55,11 @@ make
 make install # or make install PREFIX=/usr
 ```
 
-## Implementation
+## Acknowledgments
 
-fuse-mfs is implemented using the Minix3 source code.
-Minix3 is a Unix-like operating system.
+fuse-mfs uses code from the following open-source projects:
 
-http://www.minix3.org/
+* [MINIX3](http://www.minix3.org/) - [LICENSE](http://git.minix3.org/index.cgi?p=minix.git;a=blob_plain;f=LICENSE;hb=HEAD)
 
 ## License
 
