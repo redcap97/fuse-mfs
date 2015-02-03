@@ -1,6 +1,9 @@
-DOCKER = docker
-IMAGE_NAME = fuse-mfs
 COMMANDS = all install clean test
+
+DOCKER = docker
+DOCKER_FLAGS = -v $$(pwd):/cache -e "block_size=$(BLOCK_SIZE)" --rm
+BLOCK_SIZE = 4096
+IMAGE_NAME = fuse-mfs
 
 .PHONY: $(COMMANDS)
 
@@ -13,4 +16,4 @@ install: all
 
 test:
 	$(DOCKER) build -t $(IMAGE_NAME) test/docker
-	$(DOCKER) run --rm --privileged -v $$(pwd):/cache $(IMAGE_NAME)
+	$(DOCKER) run --privileged $(DOCKER_FLAGS) $(IMAGE_NAME)
