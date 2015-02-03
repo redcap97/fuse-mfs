@@ -2,9 +2,9 @@
 
 ntest=1
 
-name253="_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_123456789_12"
-name255="${name253}34"
-name256="${name255}5"
+name253="_123456789_123456789_123456789_123456789_123456789_1234567"
+name255="${name253}89"
+name256="${name255}_"
 path1021="${name255}/${name255}/${name255}/${name253}"
 path1023="${path1021}/x"
 path1024="${path1023}x"
@@ -33,12 +33,13 @@ run_getconf()
 	echo $val
 }
 
-name_max_val=$(run_getconf NAME_MAX)
+# Minix3's NAME_MAX is 60
+name_max_val=60
 path_max_val=$(run_getconf PATH_MAX)
 
 name_max="_"
 i=1
-while test $i -lt $name_max_val ; do 
+while test $i -lt $name_max_val ; do
 	name_max="${name_max}x"
 	i=$(($i+1))
 done
@@ -47,7 +48,7 @@ num_of_dirs=$(( ($path_max_val + $name_max_val) / ($name_max_val + 1) - 1 ))
 
 long_dir="${name_max}"
 i=1
-while test $i -lt $num_of_dirs ; do 
+while test $i -lt $num_of_dirs ; do
 	long_dir="${long_dir}/${name_max}"
 	i=$(($i+1))
 done
