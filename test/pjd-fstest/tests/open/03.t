@@ -8,17 +8,17 @@ dir=`dirname $0`
 
 echo "1..12"
 
-expect 0 mkdir ${name255} 0755
-expect 0 mkdir ${name255}/${name255} 0755
-expect 0 mkdir ${name255}/${name255}/${name255} 0755
-expect 0 mkdir ${path1021} 0755
-expect 0 open ${path1023} O_CREAT 0642
-expect 0642 stat ${path1023} mode
-expect 0 unlink ${path1023}
+expect 0 mkdir ${name60} 0755
+expect 0 mkdir ${name60}/${name60} 0755
+expect 0 mkdir ${name60}/${name60}/${name60} 0755
+expect 0 mkdir ${component4} 0755
+expect 0 open ${component5} O_CREAT 0642
+expect 0642 stat ${component5} mode
+expect 0 unlink ${component5}
 create_too_long
 expect ENAMETOOLONG open ${too_long} O_CREAT 0642
 unlink_too_long
-expect 0 rmdir ${path1021}
-expect 0 rmdir ${name255}/${name255}/${name255}
-expect 0 rmdir ${name255}/${name255}
-expect 0 rmdir ${name255}
+expect 0 rmdir ${component4}
+expect 0 rmdir ${name60}/${name60}/${name60}
+expect 0 rmdir ${name60}/${name60}
+expect 0 rmdir ${name60}

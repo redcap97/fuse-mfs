@@ -8,8 +8,8 @@ dir=`dirname $0`
 
 echo "1..5"
 
-expect 0 create ${name255} 0644
-expect 0 truncate ${name255} 123
-expect 123 stat ${name255} size
-expect 0 unlink ${name255}
-expect ENAMETOOLONG truncate ${name256} 123
+expect 0 create ${name60} 0644
+expect 0 truncate ${name60} 123
+expect 123 stat ${name60} size
+expect 0 unlink ${name60}
+expect ENAMETOOLONG truncate ${name61} 123

@@ -8,7 +8,7 @@ dir=`dirname $0`
 
 echo "1..4"
 
-expect 0 mkdir ${name255} 0755
-expect 0 rmdir ${name255}
-expect ENOENT rmdir ${name255}
-expect ENAMETOOLONG rmdir ${name256}
+expect 0 mkdir ${name60} 0755
+expect 0 rmdir ${name60}
+expect ENOENT rmdir ${name60}
+expect ENAMETOOLONG rmdir ${name61}

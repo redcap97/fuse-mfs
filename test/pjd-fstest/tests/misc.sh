@@ -2,12 +2,11 @@
 
 ntest=1
 
-name253="_123456789_123456789_123456789_123456789_123456789_1234567"
-name255="${name253}89"
-name256="${name255}_"
-path1021="${name255}/${name255}/${name255}/${name253}"
-path1023="${path1021}/x"
-path1024="${path1023}x"
+name60="_123456789_123456789_123456789_123456789_123456789_123456789"
+name61="${name60}_"
+component4="${name60}/${name60}/${name60}/${name60}"
+component5="${component4}/x"
+path1024="${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/${name60}/_123456789_123456789_123456789_123456789_1234567"
 
 echo ${dir} | egrep '^/' >/dev/null 2>&1
 if [ $? -eq 0 ]; then

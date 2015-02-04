@@ -8,6 +8,6 @@ dir=`dirname $0`
 
 echo "1..3"
 
-expect 0 mkfifo ${name255} 0644
-expect 0 unlink ${name255}
-expect ENAMETOOLONG mkfifo ${name256} 0644
+expect 0 mkfifo ${name60} 0644
+expect 0 unlink ${name60}
+expect ENAMETOOLONG mkfifo ${name61} 0644

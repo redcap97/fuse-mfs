@@ -8,8 +8,8 @@ dir=`dirname $0`
 
 echo "1..5"
 
-expect 0 create ${name255} 0644
-expect 0 chown ${name255} 65534 65534
-expect 65534,65534 stat ${name255} uid,gid
-expect 0 unlink ${name255}
-expect ENAMETOOLONG chown ${name256} 65533 65533
+expect 0 create ${name60} 0644
+expect 0 chown ${name60} 65534 65534
+expect 65534,65534 stat ${name60} uid,gid
+expect 0 unlink ${name60}
+expect ENAMETOOLONG chown ${name61} 65533 65533

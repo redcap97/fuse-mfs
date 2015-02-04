@@ -8,16 +8,16 @@ dir=`dirname $0`
 
 echo "1..11"
 
-expect 0 mkdir ${name255} 0755
-expect 0 mkdir ${name255}/${name255} 0755
-expect 0 mkdir ${name255}/${name255}/${name255} 0755
-expect 0 mkdir ${path1021} 0755
-expect 0 mkdir ${path1023} 0755
-expect 0 rmdir ${path1023}
+expect 0 mkdir ${name60} 0755
+expect 0 mkdir ${name60}/${name60} 0755
+expect 0 mkdir ${name60}/${name60}/${name60} 0755
+expect 0 mkdir ${component4} 0755
+expect 0 mkdir ${component5} 0755
+expect 0 rmdir ${component5}
 create_too_long
 expect ENAMETOOLONG mkdir ${too_long} 0755
 unlink_too_long
-expect 0 rmdir ${path1021}
-expect 0 rmdir ${name255}/${name255}/${name255}
-expect 0 rmdir ${name255}/${name255}
-expect 0 rmdir ${name255}
+expect 0 rmdir ${component4}
+expect 0 rmdir ${name60}/${name60}/${name60}
+expect 0 rmdir ${name60}/${name60}
+expect 0 rmdir ${name60}

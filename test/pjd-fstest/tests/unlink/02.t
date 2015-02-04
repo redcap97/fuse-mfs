@@ -8,7 +8,7 @@ dir=`dirname $0`
 
 echo "1..4"
 
-expect 0 create ${name255} 0644
-expect 0 unlink ${name255}
-expect ENOENT unlink ${name255}
-expect ENAMETOOLONG unlink ${name256}
+expect 0 create ${name60} 0644
+expect 0 unlink ${name60}
+expect ENOENT unlink ${name60}
+expect ENAMETOOLONG unlink ${name61}
