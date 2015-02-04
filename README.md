@@ -39,7 +39,7 @@ fsck.mfs -r /path/to/image_file
 ### Ubuntu 14.04
 
 ```
-apt-get install build-essential pkg-config libfuse-dev
+apt-get install build-essential pkg-config fuse libfuse-dev
 ```
 
 ### Arch Linux
@@ -55,12 +55,20 @@ make
 make install # or make install PREFIX=/usr
 ```
 
-## Implementation
+## Test
 
-fuse-mfs is implemented using the Minix3 source code.
-Minix3 is a Unix-like operating system.
+Docker is required to run tests.
 
-http://www.minix3.org/
+```
+make test
+```
+
+## Acknowledgments
+
+fuse-mfs uses code from the following open-source projects:
+
+* [MINIX3](http://www.minix3.org/): [LICENSE](http://git.minix3.org/index.cgi?p=minix.git;a=blob_plain;f=LICENSE;hb=HEAD)
+* [pjd-fstest](http://www.tuxera.com/community/posix-test-suite/): [LICENSE](test/pjd-fstest/LICENSE)
 
 ## License
 
