@@ -39,7 +39,7 @@ fsck.mfs -r /path/to/image_file
 ### Ubuntu 14.04
 
 ```
-apt-get install build-essential pkg-config libfuse-dev
+apt-get install build-essential pkg-config fuse libfuse-dev
 ```
 
 ### Arch Linux
