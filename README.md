@@ -55,6 +55,14 @@ make
 make install # or make install PREFIX=/usr
 ```
 
+## Test
+
+Docker is required to run tests.
+
+```
+make test
+```
+
 ## Acknowledgments
 
 fuse-mfs uses code from the following open-source projects:
