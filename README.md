@@ -1,5 +1,7 @@
 # fuse-mfs
 
+[![Build Status](https://travis-ci.org/redcap97/fuse-mfs.svg?branch=master)](https://travis-ci.org/redcap97/fuse-mfs)
+
 fuse-mfs is FUSE-based Minix3 Filesystem.
 
 ## Usage
