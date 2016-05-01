@@ -3,16 +3,16 @@
 set -ex
 
 BUILD_PATH=/tmp
-CACHE_PATH=/cache
+REPO_PATH=/repo
 
 cd ${BUILD_PATH}
 
-if [ ! -d "${CACHE_PATH}" ]; then
-  echo "${CACHE_PATH} doesn't exist" >&2
+if [ ! -d "${REPO_PATH}" ]; then
+  echo "${REPO_PATH} doesn't exist" >&2
   exit 1
 fi
 
-cp -r ${CACHE_PATH} fuse-mfs
+cp -r ${REPO_PATH} fuse-mfs
 
 pushd fuse-mfs
 make clean all

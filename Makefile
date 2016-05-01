@@ -1,7 +1,7 @@
 COMMANDS = all install clean
 
 DOCKER = docker
-DOCKER_FLAGS = -v $$(pwd):/cache:ro -e "block_size=$(BLOCK_SIZE)" --rm
+DOCKER_FLAGS = -v $$(pwd):/repo:ro -e "block_size=$(BLOCK_SIZE)" --rm
 BLOCK_SIZE = 4096
 IMAGE_NAME = fuse-mfs
 
