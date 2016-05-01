@@ -9,7 +9,7 @@
 #include <fuse.h>
 
 #define PACKAGE_NAME    "fuse-mfs"
-#define PACKAGE_VERSION "0.2"
+#define PACKAGE_VERSION "0.3"
 
 enum {
   KEY_VERSION,
