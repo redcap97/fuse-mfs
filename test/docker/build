@@ -7,11 +7,12 @@ CACHE_PATH=/cache
 
 cd ${BUILD_PATH}
 
-if [ -d "${CACHE_PATH}" ]; then
-  cp -r ${CACHE_PATH} fuse-mfs
-else
-  git clone -b ${branch:-master} https://github.com/redcap97/fuse-mfs.git fuse-mfs
+if [ ! -d "${CACHE_PATH}" ]; then
+  echo "${CACHE_PATH} doesn't exist" >&2
+  exit 1
 fi
+
+cp -r ${CACHE_PATH} fuse-mfs
 
 pushd fuse-mfs
 make clean all
