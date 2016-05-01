@@ -77,8 +77,7 @@ struct fsdriver_dentry {
 
 #define _DIRENT_ALIGN(dp) (sizeof((dp)->d_fileno) - 1)
 
-#define _DIRENT_NAMEOFF(dp) \
-    ((char *)(void *)&(dp)->d_name - (char *)(void *)dp)
+#define _DIRENT_NAMEOFF(dp) __builtin_offsetof(__typeof__(*(dp)), d_name)
 
 #define _DIRENT_RECLEN(dp, namlen) \
     ((_DIRENT_NAMEOFF(dp) + (namlen) + 1 + _DIRENT_ALIGN(dp)) & \
