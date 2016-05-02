@@ -181,6 +181,14 @@ struct dirent {
 #define ASSERT assert
 #define rounddown(x,y)  (((x)/(y))*(y))
 
+#ifndef UTIME_NOW
+#define UTIME_NOW  0x3fffffff
+#endif
+
+#ifndef UTIME_OMIT
+#define UTIME_OMIT 0x3ffffffe
+#endif
+
 static inline unsigned long ex64lo(u64_t i)
 {
         return (unsigned long)i;
