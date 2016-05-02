@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -exu
+
+case "${TRAVIS_OS_NAME}" in
+linux)
+  sudo apt-get install -y pkg-config fuse
+  sudo modprobe fuse
+  sudo chmod 666 /dev/fuse
+  sudo chown root:$USER /etc/fuse.conf
+  echo user_allow_other | sudo tee -a /etc/fuse.conf
+  ;;
+esac
