@@ -50,11 +50,29 @@ apt-get install build-essential pkg-config fuse libfuse-dev
 pacman -S --needed base-devel fuse
 ```
 
+### Mac OS X
+
+Command Line Tools for Xcode and [FUSE for OS X](https://osxfuse.github.io/) are required.
+Please also install the following packages.
+
+```
+brew install pkg-config coreutils
+```
+
 ## Build and Install
+
+### GNU/Linux
 
 ```
 make
 make install # or make install PREFIX=/usr
+```
+
+### Mac OS X
+
+```
+make
+make install INSTALL=ginstall # or make install INSTALL=ginstall PREFIX=/usr
 ```
 
 ## Test
