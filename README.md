@@ -68,15 +68,27 @@ brew install pkg-config coreutils
 ### GNU/Linux
 
 ```
+# Build
 make
-make install # or make install PREFIX=/usr
+
+# Install to /usr/local
+make install
+
+# Install to /usr
+make install PREFIX=/usr
 ```
 
 ### Mac OS X
 
 ```
+# Build
 make
-make install INSTALL=ginstall # or make install INSTALL=ginstall PREFIX=/usr
+
+# Install to /usr/local
+make install INSTALL=ginstall
+
+# Install to /usr
+make install INSTALL=ginstall PREFIX=/usr
 ```
 
 ## Test
