@@ -38,7 +38,7 @@ fsck.mfs -r /path/to/image_file
 
 ## Build Prerequisites
 
-### Ubuntu 14.04
+### Ubuntu
 
 ```
 apt-get install build-essential pkg-config fuse libfuse-dev
