@@ -14,15 +14,11 @@ fuse-mfs /path/to/image_file /path/to/mountpoint/
 
 ### umount
 
-#### GNU/Linux
-
 ```
+# GNU/Linux
 fusermount -u /path/to/mountpoint/
-```
 
-#### Mac OS X
-
-```
+# Mac OS X
 umount /path/to/mountpoint/
 ```
 
