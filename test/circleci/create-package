@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -exu
+
+pkgversion=$(git describe --tags --abbrev=0 | cut -dv -f2)
+pkgrelease=$(git rev-parse --short HEAD)
+
+echo "FUSE-based Minix3 Filesystem" > description-pak
+
+sudo checkinstall \
+  --default \
+  --maintainer=redcap97@gmail.com \
+  --pkgname=fuse-mfs \
+  --pkgversion=${pkgversion} \
+  --pkgrelease=${pkgrelease} \
+  --pkglicense=MIT \
+  --requires=fuse \
+  --pkggroup=utils \
+  make install PREFIX=/usr
