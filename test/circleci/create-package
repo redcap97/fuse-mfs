@@ -13,7 +13,7 @@ sudo checkinstall \
   --pkgname=fuse-mfs \
   --pkgversion=${pkgversion} \
   --pkgrelease=${pkgrelease} \
-  --pkglicense=MIT \
+  --pkglicense=BSD \
   --requires=fuse \
   --pkggroup=utils \
   make install PREFIX=/usr
